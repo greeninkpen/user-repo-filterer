@@ -2,37 +2,229 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Mobile screens */
+@media only screen and (max-width: 600px) {
+  .App {
+    width: 100%;
+  }
+
+  .App-header .navbar {
+    display: none;
+  }
+
+  .Layout-user-data {
+    display: none;
+  }
+
+  .Layout-user-repos {
+    margin: 0.5em;
+  }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Tablet & PC screens */
+@media only screen and (min-width: 601px) {
+  .App {
+    width: 100%;
+  }
+
+  .App-header .mobile-nav {
+    display: none;
+  }
+
+  .Layout {
+    display: grid;
+    --Layout-user-data-width: 256px;
   }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  /* background-color: #282c34; */
+  min-height: 15vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 }
 
-.App-link {
-  color: #61dafb;
+.user-search-bar {
+  margin: 1em;
+  font-size: 14px;
+  padding: 5px 16px;
+  border-radius: 6px;
+  height: 32px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.mobile-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.back-button,
+.spacer {
+  font-size: 1em;
+  visibility: hidden
+}
+
+.back-button {
+  visibility: visible;
+  margin-left: 1em;
+}
+
+.navbar {
+  width: 100%;
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1em;
+  border-bottom: 2px solid grey;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.navbar ul li {
+  margin: 1em;
+}
+
+.navbar ul svg {
+  margin-right: 0.5em;
+}
+
+.search-icon {
+  margin-right: 1em;
+}
+.Layout-user-data,
+.Layout-user-repos {
+  height: calc(100vh - 15vh);
+}
+
+.Layout {
+  display: grid;
+  grid-template-columns: var(--Layout-user-data-width) 1fr;
+  grid-gap: var(--Layout-gutter);
+}
+
+.Layout-user-data {
+  grid-column: 1;
+  --Layout-user-data-width: 256px;
+  --Layout-gutter: 16px;
+  width: var(--Layout-user-data-width);
+  margin-left: 1em;
+  margin-top: 2em;
+  text-align: center;
+}
+
+.Layout-user-data img {
+  width: 256px;
+  height: 256px;
+  border-radius: 50%;
+}
+#username {
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 1em;
+  text-align: left
+}
+#follow-btn {
+  padding: 5px 16px;
+  height: 32px;
+  width: 100%;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 700;
+  border: 1px solid grey;
+  border-radius: 6px;
+}
+#followers-following {
+  text-align: left;
+}
+#organizations {
+  border-top: 1px solid grey;
+  margin-top: 1em;
+  padding-top: 1em;
+  text-align: left;
+  font-size: 20px;
+  font-weight: bold;
+}
+#orgavatars-container {
+  text-align: left;
+}
+#orgavatar {
+  width: 42px;
+  height: 42px;
+  aspect-ratio: auto 42 / 42;
+  border-radius: 6px;
+  margin-right: 0.5em;
+  
+}
+.Layout-user-repos {
+  grid-column: 2;
+  min-width: 0;
+  width: calc(100% - var(--Layout-user-data-width) - var(--Layout-gutter));
+  margin-top: 1em;
+  margin-right: 1em;
+  text-align: left;
+}
+.search-repos {
+  display: flex;
+  padding: 5px 12px;
+  height: 32px;
+  border-radius: 6px;
+  width: 87%;
+  font-size: 18px;
+  margin-left: 3em;
+  font-weight: 500;
+}
+select {
+  display: flex;
+  margin-top: 0.3em;
+  margin-left: 3em;
+  margin-bottom: 1em;
+  padding: 5px 12px;
+  height: 32px;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 600;
+}
+#repos {
+  border-top: 0.5px solid grey;
+  margin: 0 3em;
+  padding: 25px 0;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 700;
+}
+#repo-links {
+  text-decoration: none;
+  color: #2F81F7;
+}
+.description {
+  font-size: 16px;
+  font-weight: light;
+}
+#circle-icon, #updated-on {
+  display: inline;
+  margin-right: 1em;
+  font-size: 14px;
+}
+#updated-on {
+  font-size: 14px;
+  font-weight: light;
 }
