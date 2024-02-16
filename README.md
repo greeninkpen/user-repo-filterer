@@ -1,23 +1,33 @@
-# Getting Started with Create React App
+# User-repo-filterer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This project is a simple application built with React and TypeScript. It uses the GitHub GraphQL API to fetch and display user avatar URLs and repository information including the name, URL, and description. Users can filter the repositories of the given user by language or search term.
 
-In the project directory, you can run:
+## How to Run
 
-### `npm start`
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Install the dependencies with `npm install`.
+4. Start the application with `npm start`.
 
-Runs the app in the development mode.\
+The application will start running on `http://localhost:3000` in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+## How to Run the Test Suite
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To run the test suite, navigate to the project directory and run 
+### `npm test`.
+
+## Future Improvements
+
+- Break up App component into smaller components to improve readability e.g. SearchBar, NavBar, UserCard, RepoList
+- Include working links in the navbar 
+- Include working links to the organizations 
+- Include tests 
 
 ### `npm run build`
 

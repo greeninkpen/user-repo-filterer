@@ -11,6 +11,7 @@ import { ReactComponent as PeopleIcon } from './people-16.svg';
 import { ReactComponent as StarIcon } from './star-16.svg';
 import { gql, useQuery } from '@apollo/client';
 
+// Apollo client setup with Github graphQL API endpoint
 const client = new ApolloClient({
   uri: 'https://api.github.com/graphql',
   headers: {
@@ -19,6 +20,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
+// Github graphGL API query to get user and repositories
 const GET_USER_AND_REPOSITORIES = gql`
 query GetUserAndRepositories($login: String!) {
   user(login: $login) {
@@ -68,6 +70,7 @@ function App() {
     skip: !user,
   });
 
+  // function to handle user search
   const handleKeyPress = async (event: any) => {
     if (event.key === 'Enter') {
       try {
@@ -78,6 +81,8 @@ function App() {
       }
     }
   };
+
+  // function to handle repository search
   const handleRepoSearch = async (event: any) => {
     if (event.key === 'Enter') {
       try {
@@ -93,6 +98,8 @@ function App() {
       }
     }
   };
+
+  // function to filter repositories by search term
   const filteredRepositories = (searchTerm: string) => {
     try {
       const filteredRepos = data.user.repositories.nodes.filter((repo: any) => repo.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -103,12 +110,16 @@ function App() {
       return [];
     }
   }
+
+  // function to handle language change using select dropdown
   const handleLanguageChange = (event: any) => {
     const newSelectedLanguage = event.target.value;
     setSelectedLanguage(newSelectedLanguage);
     const filteredRepos = filterRepositoriesByLanguage(newSelectedLanguage);
     setFilteredRepos(filteredRepos);
   }
+
+  // function to filter repositories by selected language
   const filterRepositoriesByLanguage = (language: string) => {
     if (language === 'all') {
       return data.user.repositories.nodes;
@@ -183,6 +194,7 @@ function App() {
       {data && (
         <>
           <div className='Layout'>
+            {/* lines 197 - 212  shows user profile info*/}
             <div className='Layout-user-data'>
               <img src={data.user.avatarUrl} alt={data.user.login} />
               <h2 id='username'>{data.user.login}</h2>
@@ -199,10 +211,11 @@ function App() {
                 ))}
               </div>
             </div>
+            {/* lines 215 - 258 displays and filters the repositories of the given user*/}
             <div id='Layout-user-repos'>
               <input type="search" className="search-repos" name="search-repos" placeholder="Find a repository"
-                // value={searchRepo}
-                onKeyDown={handleRepoSearch} />
+              onKeyDown={handleRepoSearch} />
+              {/* dropdown menu to filter repos by language  */}
               <select id="language" name="language" onChange={handleLanguageChange}>
                 <option value="all">All</option>
                 {data && data.user.repositories.nodes.reduce((languages: string[], repo: any) => {
@@ -215,6 +228,8 @@ function App() {
                   <option key={language} value={language}>{language}</option>
                 ))}
               </select>
+              {/* conditional rendering of repos */}
+              {/* if filteredRepos array is not empty, show matching repos */}
               {filteredRepos.length > 0 ? filteredRepos.map((repo: any) => (
                 <div id='repos' key={repo.name}>
                   <a href={repo.url} id='repo-links'>{repo.name}</a>
@@ -228,7 +243,9 @@ function App() {
                   }}></span> {repo.primaryLanguage.name}</p>}
                   <p id='updated-on'>Updated on {new Date(repo.updatedAt).toLocaleDateString()}</p>
                 </div>
-              )) : data && data.user.repositories.nodes.map((repo: any) => (
+              )) 
+              // else show all repos
+              : data && data.user.repositories.nodes.map((repo: any) => (
                 <div id='repos' key={repo.name}>
                   <a href={repo.url} id='repo-links'>{repo.name}</a>
                   <p className='description'>{repo.description}</p>
