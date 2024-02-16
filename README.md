@@ -25,8 +25,9 @@ To run the test suite, navigate to the project directory and run
 ## Future Improvements
 
 - Break up App component into smaller components to improve readability e.g. SearchBar, NavBar, UserCard, RepoList
+- Break up CSS elements 
 - Include working links in the navbar 
-- Include working links to the organizations 
+- Improve UI/UX by including things like hover effects
 - Include tests 
 
 ### `npm run build`
